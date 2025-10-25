@@ -1,20 +1,39 @@
 {
-  "manifest_version": 3,
-  "name": "SafeSurfers",
-  "version": "1.0",
-  "description": "Detect and analyze suspicious websites, URLs, and scripts in real-time.",
-  "permissions": ["storage", "scripting", "tabs", "webRequest", "webRequestBlocking", "<all_urls>"],
-  "host_permissions": ["<all_urls>"],
-  "background": {
-    "service_worker": "background.ts"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content/default.ts"]
+    "manifest_version": 3,
+    "name": "SafeSurfers: AI Security Sentinel",
+    "version": "1.0",
+    "description": "A behavioral anomaly detection system for Chrome extensions and web scripts.",
+    
+    // --- CORE EXTENSION SETUP ---
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "assets/icon.png",
+        "default_title": "SafeSurfers Dashboard"
+    },
+    
+    // --- THE BRAIN (Background Service Worker) ---
+    "background": {
+        "service_worker": "background.js"
+    },
+
+    // --- CRITICAL PERMISSIONS FOR T2'S MONITORING ---
+    "permissions": [
+        "storage",             
+        "scripting",           
+        "tabs",                
+        "webRequest",          
+        "webNavigation",       
+        "management",          
+        "alarms"               
+    ],
+    
+    // --- HOST ACCESS (Required for monitoring all network traffic) ---
+    "host_permissions": [
+        "<all_urls>"
+    ],
+
+    // --- WEB REQUEST DECLARATIONS (Required for T2's network analysis) ---
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
     }
-  ],
-  "action": {
-    "default_title": "SafeSurfers"
-  }
 }
