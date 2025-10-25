@@ -1,27 +1,20 @@
 {
   "manifest_version": 3,
-  "name": "SafeSurfers Security Engine",
+  "name": "SafeSurfers",
   "version": "1.0",
-  "description": "Detects malicious scripts, keyloggers, form hijacks and hidden clicks.",
-  "permissions": [
-    "scripting",
-    "storage",
-    "webRequest",
-    "tabs"
-  ],
+  "description": "Detect and analyze suspicious websites, URLs, and scripts in real-time.",
+  "permissions": ["storage", "scripting", "tabs", "webRequest", "webRequestBlocking", "<all_urls>"],
   "host_permissions": ["<all_urls>"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.ts"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "run_at": "document_start"
+      "js": ["content/default.ts"]
     }
   ],
   "action": {
-    "default_popup": "dashboard.html",
     "default_title": "SafeSurfers"
   }
 }
