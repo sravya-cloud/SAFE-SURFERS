@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { saveLog } from './lib/log-storage'
 function IndexPopup() {
   const [data, setData] = useState("")
 

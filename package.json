@@ -1,6 +1,6 @@
 {
   "name": "safesurfers",
-  "displayName": "Safesurfers",
+  "displayName": "SafeSurfers",
   "version": "0.0.1",
   "description": "A real-time, AI-driven security sentinel for browser extension integrity.",
   "author": "Safe Surfers",
@@ -25,9 +25,25 @@
     "prettier": "3.2.4",
     "typescript": "5.3.3"
   },
+  "plasmo": {
+    "popup": {
+      "filename": "popup.tsx"
+    },
+    "background": {
+      "service_worker": "background.ts"
+    }
+  },
   "manifest": {
     "host_permissions": [
-      "https://*/*"
+      "<all_urls>"
+    ],
+    "permissions": [
+      "storage",
+      "webRequest",
+      "webNavigation",
+      "scripting",
+      "tabs",
+      "management"
     ]
   }
 }
